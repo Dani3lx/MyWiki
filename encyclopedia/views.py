@@ -6,6 +6,7 @@ from django.urls import reverse
 
 from . import util
 
+
 class SearchForm(forms.Form):
     search = forms.CharField(label="", widget=forms.TextInput(attrs={'class':"search", 'type':"text", 'name':"q", 'placeholder':"Search Encyclopedia"}))
 
@@ -13,14 +14,29 @@ class CreateForm(forms.Form):
     title = forms.CharField(label="Title")
     content = forms.CharField(label="Markdown Content", widget=forms.Textarea(attrs={'placeholder':"Enter the markdown here"}))
 
+class EditForm(forms.Form):
+    field = forms.CharField(label="Content to edit", widget=forms.Textarea())
 
 def index(request):
-
-
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries(),
         "form": SearchForm
     })
+
+def edit(request, title):
+    if request.method == "POST":
+        form = EditForm(request.POST)
+        if form.is_valid():
+            content = form.cleaned_data["field"]
+            util.save_entry(title, content)
+            return HttpResponseRedirect(reverse("index"))
+    else:
+        prevcontent = util.get_entry(title)
+        form = EditForm(initial={"field": prevcontent})
+        return render(request, "encyclopedia/edit.html", {
+            "field": form,
+            "title": title
+        })
 
 def entry(request, title):
 

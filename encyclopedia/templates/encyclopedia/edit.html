@@ -1,0 +1,14 @@
+{% extends "encyclopedia/layout.html" %}
+
+
+{% block title %}
+    {{ Editor }}
+{% endblock %}
+
+{% block body %}
+    <form action="{{ title }}" method="post" style="display: flex; flex-direction: column; max-width: 80%; max-height: 50%; padding: 20px;">
+        {% csrf_token %} 
+        {{ field }}
+        <input type="submit" value="Submit" style="width: 100px; margin-top: 20px;">
+    </form>
+{% endblock %}
