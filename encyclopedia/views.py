@@ -3,8 +3,10 @@ import markdown2
 from django import forms
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from django.shortcuts import redirect
 from . import util
+
+import random as r
 
 
 class SearchForm(forms.Form):
@@ -23,13 +25,19 @@ def index(request):
         "form": SearchForm
     })
 
+def random(request):
+    lst = util.list_entries()
+    title = lst[r.randint(0, len(lst) - 1)]
+
+    return HttpResponseRedirect(reverse('entry', args=(title,)))
+
 def edit(request, title):
     if request.method == "POST":
         form = EditForm(request.POST)
         if form.is_valid():
             content = form.cleaned_data["field"]
             util.save_entry(title, content)
-            return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("entry", args=(title,)))
     else:
         prevcontent = util.get_entry(title)
         form = EditForm(initial={"field": prevcontent})
