@@ -96,7 +96,7 @@ def create(request):
             content = form.cleaned_data["content"]
             if title in util.list_entries():
                 return render(request, "encyclopedia/entry.html", {
-                    "content": "This page already exist.",
+                    "content": "This entry already exist. You can find it using the search bar on the left hand side of the screen.",
                     "title": "ERROR",
                     "form": SearchForm,
                 })                
