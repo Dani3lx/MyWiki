@@ -14,10 +14,10 @@ class SearchForm(forms.Form):
 
 class CreateForm(forms.Form):
     title = forms.CharField(label="Title")
-    content = forms.CharField(label="Markdown Content", widget=forms.Textarea(attrs={'placeholder':"Enter the markdown here"}))
+    content = forms.CharField(label="Markdown Content", widget=forms.Textarea())
 
 class EditForm(forms.Form):
-    field = forms.CharField(label="Content to edit", widget=forms.Textarea())
+    field = forms.CharField(label="Content to edit", widget=forms.Textarea(attrs={'placeholder':"Enter the markdown here"}))
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -51,7 +51,7 @@ def entry(request, title):
     result = util.get_entry(title)
     if result == None:
         return render(request, "encyclopedia/entry.html", {
-            "content": "Requested page was not found.",
+            "content": "Requested page was not found. ",
             "title": "ERROR",
             "form": SearchForm,
         })
