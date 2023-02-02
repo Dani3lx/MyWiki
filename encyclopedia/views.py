@@ -3,17 +3,16 @@ import markdown2
 from django import forms
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from django.shortcuts import redirect
 from . import util
 
 import random as r
 
 
 class SearchForm(forms.Form):
-    search = forms.CharField(label="", widget=forms.TextInput(attrs={'class':"search", 'type':"text", 'name':"q", 'placeholder':"Search Encyclopedia"}))
+    search = forms.CharField(label="", widget=forms.TextInput(attrs={'class':"search", 'type':"text", 'name':"q", 'placeholder':"Search Note"}))
 
 class CreateForm(forms.Form):
-    title = forms.CharField(label="Title")
+    title = forms.CharField(label="Title", widget=forms.TextInput(attrs={'style':"width: 80%"}))
     content = forms.CharField(label="Markdown Content", widget=forms.Textarea())
 
 class EditForm(forms.Form):

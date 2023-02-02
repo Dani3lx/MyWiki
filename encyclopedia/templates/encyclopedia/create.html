@@ -6,9 +6,12 @@ CreatePage
 
 {% block body %}
 <h1>Create new page</h1>
-<form action="{% url 'create' %}" method="post" style="display: flex; flex-direction: column; max-width: 80%; max-height: 50%; padding: 20px;">
+<form action="{% url 'create' %}" method="post" >
     {% csrf_token %} 
-    {{ textarea }}
+    <div style="display: flex; flex-direction: column; align-items: left; margin: 10px auto; padding: 30px;">
+        {{ textarea }}
+    </div>
+    
     <input type="submit" value="Submit" style="width: 100px; margin-top: 20px;">
 </form>
 
