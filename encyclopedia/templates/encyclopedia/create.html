@@ -8,6 +8,7 @@ CreatePage
 <h1>Create new page</h1>
 <form action="{% url 'create' %}" method="post" >
     {% csrf_token %} 
+    
     <div style="display: flex; flex-direction: column; align-items: left; margin: 10px auto; padding: 30px;">
         {{ textarea }}
     </div>

@@ -1,38 +1,37 @@
-body {
-    margin: 0;
-    background-color: white;
-}
-
-code {
-    white-space: pre;
-}
-
 h1 {
     margin-top: 0px;
     padding-top: 20px;
 }
 
-textarea {
-    height: 90vh;
-    width: 80%;
-}
-
-.main {
-    padding: 10px;
-}
-
-.search {
+body {
+    background-color: slategrey;
     width: 100%;
-    font-size: 15px;
-    line-height: 15px;
+}
+
+.jumbotron {
+    background-color: whitesmoke;
+    width: 99%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px black;
 }
 
 .sidebar {
-    background-color: #f0f0f0;
-    height: 100vh;
-    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px black;
+    position: sticky;
+    top: 10px;
+    height: 100%;
 }
 
-.sidebar h2 {
-    margin-top: 5px;
+
+.list-group {
+    box-shadow: 5px 5px 0px gray;
+    border-radius: 10px;
+}
+
+.list-group-item:hover {
+    background-color: #eded;
+    cursor: pointer;
 }
